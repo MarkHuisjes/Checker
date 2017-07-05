@@ -163,7 +163,7 @@ def stat(cwd, inp): #Calculate statistics on spatial data
     mdresrs = np.median(residrs, axis=0, overwrite_input=True)
     #Collect statistics for export
     #statnames = ['slp', 'intc', 'R2', 'MN_res', 'MD_res', 'R', 'slprs', 'intcrs', 'R2rs', 'mnresrs', 'mdresrs', 'W', 'I', 'Zi', 'G', 'Zg']
-    statlst = [slp, intc, R2, MN_res, MD_res, R, slprs, intcrs, R2rs, mnresrs, mdresrs, W, spatstat[0], spatstat[1], spatstat[2], spatstat[3]]
+    statlst = [slp, intc, R2, MD_res, R, mdresrs, W, spatstat[0], spatstat[1], spatstat[2], spatstat[3]]
     statvalsnotens = [float(i) for i in statlst]
 	
     #Collect tensity and statistics
@@ -239,8 +239,8 @@ def classify():
     data2 = np.delete(data1,(0), axis=0)
     data3 = np.delete(data2,(0), axis=1)
     npMatrix = np.matrix(data3)
-    X = npMatrix[:,0:14] #Stat values
-    y = data3[:,15] #Tensity
+    X = npMatrix[:,0:10] #Stat values
+    y = data3[:,11] #Tensity
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=.2, random_state=42)
 
     #Naive model (majority vote)   
